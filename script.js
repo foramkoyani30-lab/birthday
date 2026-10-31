@@ -1,0 +1,17 @@
+// Twinkling moonlit sky
+const c=document.getElementById('sky'),x=c.getContext('2d');let stars=[];
+function fit(){c.width=innerWidth;c.height=innerHeight;stars=Array.from({length:140},()=>({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.5+.2,a:Math.random(),v:Math.random()*.012+.002}))}
+function sky(){x.clearRect(0,0,c.width,c.height);stars.forEach(s=>{s.a+=s.v;if(s.a>1||s.a<.15)s.v*=-1;x.fillStyle=`rgba(236,225,255,${s.a})`;x.beginPath();x.arc(s.x,s.y,s.r,0,7);x.fill()});requestAnimationFrame(sky)}addEventListener('resize',fit);fit();sky();
+function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');scrollTo({top:0,behavior:'smooth'})}
+function sparkle(){for(let i=0;i<35;i++){let s=document.createElement('i');s.textContent='✦';s.style.cssText=`position:fixed;z-index:5;left:${Math.random()*100}vw;top:${Math.random()*100}vh;color:#f7d6ff;pointer-events:none;animation:appear 1s forwards`;document.body.appendChild(s);setTimeout(()=>s.remove(),1000)}}
+// Balloon wishes
+let popped=0;document.querySelectorAll('.balloon').forEach(b=>b.addEventListener('click',()=>{if(b.classList.contains('popped'))return;b.classList.add('popped');popped++;document.getElementById('wish').textContent=b.dataset.wish+` (${popped}/5)`;sparkle();if(popped===5){document.getElementById('wish').textContent='All 5 wishes are yours! May they come true. ✨';document.getElementById('balloonNext').disabled=false}}));
+// Sliding puzzle: numbered tiles, blank tile at end. Tap a tile beside blank to move.
+let board=[1,2,3,4,5,6,7,8,0],moves=0;
+function render(){let g=document.getElementById('puzzleGrid');g.innerHTML='';board.forEach((v,i)=>{let b=document.createElement('button');b.className='tile'+(v===0?' blank':'');b.textContent=v||'';b.addEventListener('click',()=>move(i));g.appendChild(b)});document.getElementById('moves').textContent='Moves: '+moves}
+function move(i){let z=board.indexOf(0);if([z-3,z+3,...(z%3?[z-1]:[]),...(z%3<2?[z+1]:[])].includes(i)){[board[i],board[z]]=[board[z],board[i]];moves++;render();if(board.every((v,i)=>v===((i+1)%9))){document.getElementById('puzzleStatus').textContent='Puzzle solved! Great job! 🎉';document.getElementById('puzzleNext').disabled=false;sparkle()}}}
+function shuffle(){board=[1,2,3,4,5,6,7,8,0];for(let i=0;i<120;i++){let z=board.indexOf(0),opts=[z-3,z+3,...(z%3?[z-1]:[]),...(z%3<2?[z+1]:[])].filter(n=>n>=0&&n<9);let n=opts[Math.floor(Math.random()*opts.length)];[board[z],board[n]]=[board[n],board[z]]}moves=0;document.getElementById('puzzleStatus').textContent='Arrange the tiles from 1 to 8';document.getElementById('puzzleNext').disabled=true;render()}
+document.getElementById('shuffle').addEventListener('click',shuffle);shuffle();
+// Gift and letter reveal
+document.getElementById('gift').addEventListener('click',()=>{document.getElementById('gift').classList.add('opened');document.getElementById('giftMessage').classList.add('show');document.getElementById('letterNext').disabled=false;sparkle()});
+document.getElementById('envelope').addEventListener('click',()=>{document.getElementById('envelope').classList.add('opened');document.getElementById('letterText').classList.add('show');sparkle()});

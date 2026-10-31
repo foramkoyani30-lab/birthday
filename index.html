@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>For Swayam ✨</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="sky"></canvas><div class="moon"></div>
+<header><span>✦ A LITTLE BIRTHDAY MAGIC ✦</span><span class="mini">FOR SWAYAM</span></header>
+<main>
+<section class="screen active" id="welcome">
+ <div class="eyebrow">A SPECIAL DAY • A SPECIAL PERSON</div>
+ <div class="orbit">✧</div><h1>Happy Birthday<br><em>Swayam</em> <span>🎂</span></h1>
+ <p class="sub">I made something just for you...</p>
+ <button class="btn" onclick="go('memories')">Start the surprise <b>→</b></button>
+ <div class="bottom">MADE WITH ♡ FOR YOU</div>
+</section>
+
+<section class="screen" id="memories">
+ <div class="eyebrow">CHAPTER 01</div><h2>Cute Memories <span>♡</span></h2>
+ <p class="sub">Little moments that deserve a place forever.</p>
+ <div class="polaroids">
+  <figure class="polaroid tilt-left"><img src="photos/s.jpg" onerror="this.src='';this.classList.add('empty')"><figcaption>Memory one ✨</figcaption></figure>
+  <figure class="polaroid tilt-right"><img src="photos/s1.jpg" onerror="this.src='';this.classList.add('empty')"><figcaption>Memory two 💙</figcaption></figure>
+  <figure class="polaroid tilt-left"><img src="photos/s2.jpg" onerror="this.src='';this.classList.add('empty')"><figcaption>Memory three 🌙</figcaption></figure>
+ </div>
+ <p class="tip">Add your pictures in the photos folder as photo1.jpg, photo2.jpg and photo3.jpg.</p>
+ <button class="btn" onclick="go('balloons')">Next Surprise →</button>
+</section>
+
+<section class="screen" id="balloons">
+ <div class="eyebrow">CHAPTER 02</div><h2>Pop the Wishes! <span>🎈</span></h2>
+ <p class="sub">Tap every balloon to reveal your birthday wishes.</p>
+ <div class="balloon-area" id="balloonArea">
+  <button class="balloon pink" data-wish="May your life always be full of happiness!">🎈</button>
+  <button class="balloon gold" data-wish="May all your dreams come true!">🎈</button>
+  <button class="balloon blue" data-wish="Keep smiling and shining always!">🎈</button>
+  <button class="balloon purple" data-wish="Wishing you success in everything!">🎈</button>
+  <button class="balloon mint" data-wish="More laughter, fun and memories ahead!">🎈</button>
+ </div><p id="wish" class="wish">0 / 5 wishes opened</p>
+ <button class="btn" id="balloonNext" disabled onclick="go('puzzle')">Continue →</button>
+</section>
+
+<section class="screen" id="puzzle">
+ <div class="eyebrow">CHAPTER 03</div><h2>Birthday Puzzle <span>🧩</span></h2>
+ <p class="sub">Put the picture pieces in the right order.</p>
+ <div class="puzzle-wrap"><div id="puzzleGrid" class="puzzle-grid"></div><div class="puzzle-info"><span id="moves">Moves: 0</span><span id="puzzleStatus">Arrange the tiles from 1 to 8</span></div></div>
+ <button class="btn" id="puzzleNext" disabled onclick="go('last')">One Last Surprise →</button>
+ <button class="text-btn" id="shuffle">Shuffle puzzle</button>
+</section>
+
+<section class="screen" id="last">
+ <div class="eyebrow">CHAPTER 04</div><h2>One Last Surprise <span>🎁</span></h2>
+ <p class="sub">A little gift, wrapped with lots of good wishes.</p>
+ <button class="gift" id="gift"><span>🎁</span><small>Tap to open</small></button>
+ <div id="giftMessage" class="gift-message">You make ordinary moments feel special. Happy Birthday, Swayam! 💙</div>
+ <button class="btn" id="letterNext" disabled onclick="go('letter')">Read My Letter →</button>
+</section>
+
+<section class="screen" id="letter">
+ <div class="eyebrow">THE FINAL CHAPTER</div><h2>A Letter Just For You <span>💌</span></h2>
+ <button class="envelope" id="envelope"><span>✉</span><small>Tap to open your letter</small></button>
+ <article class="letter" id="letterText">
+  <h3>Dear Swayam,</h3>
+  <p>Happy Birthday to a truly special friend! I hope your day is filled with happiness, laughter and all the things you love.</p>
+  <p>Thank you for the fun conversations, silly moments and memories. May this new year bring you confidence, success, peace and countless reasons to smile.</p>
+  <p>Keep being yourself and never stop chasing your dreams. Here's to many more beautiful memories!</p>
+  <p class="sign">With lots of best wishes,<br>Your best friend 💙</p>
+ </article>
+ <p class="end-note">THE END? NO — MORE MEMORIES TO MAKE. ✨</p>
+ <button class="text-btn" onclick="go('welcome')">↺ Replay surprise</button>
+</section>
+</main>
+<footer>MOONLIGHT • STARS • GOOD WISHES</footer>
+<script src="script.js"></script>
+</body></html>
